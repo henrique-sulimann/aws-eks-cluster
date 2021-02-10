@@ -10,8 +10,7 @@ steps:
     AWS_SECRET_ACCESS_KEY:
       from_secret: AWS_SECRET_ACCESS_KEY
   commands: 
-    - which python && which python3
-    - which "python*"
+    - python --version && python3 --version
     - yum install epel-release -y && yum clean all
     - yum update -y
     - yum install python-pip -y && yum clean all
