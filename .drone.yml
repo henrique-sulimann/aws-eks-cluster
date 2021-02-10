@@ -10,6 +10,7 @@ steps:
     AWS_SECRET_ACCESS_KEY:
       from_secret: AWS_SECRET_ACCESS_KEY
   commands: 
+    - yum install epel-release && yum install python-pip
     - pip install awscli 
     - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 132818155912.dkr.ecr.us-east-1.amazonaws.com 
     - docker build -t terradorm-multi-cloud-repository . 
