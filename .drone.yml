@@ -3,18 +3,13 @@ name: terraform-ec2-autoscaling
 
 steps:
 - name: docker build
-  image: centos:latest
+  image: docker:latest
   environment:
     AWS_ACCESS_KEY_ID:
       from_secret: AWS_ACCESS_KEY_ID
     AWS_SECRET_ACCESS_KEY:
       from_secret: AWS_SECRET_ACCESS_KEY
   commands: 
-    - python --version && python3 --version
-    - yum install epel-release -y && yum clean all
-    - yum update -y
-    - yum install python-pip -y && yum clean all
-    - yum -y install --enablerepo="epel" python-pip && yum clean all 
     - pip install awscli 
     - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 132818155912.dkr.ecr.us-east-1.amazonaws.com 
     - docker build -t terradorm-multi-cloud-repository . 
